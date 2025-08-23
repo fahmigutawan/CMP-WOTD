@@ -36,10 +36,10 @@ fun ColumnWithScrollbar(
         Column(
             modifier = modifier
                 .verticalScroll(scrollState)
-                .verticalScrollbar(
-                    scrollState,
-                    alwaysShowScrollbar = alwaysShowScrollbar
-                )
+//                .verticalScrollbar(
+//                    scrollState,
+//                    alwaysShowScrollbar = alwaysShowScrollbar
+//                )
                 .onSizeChanged {
                     with(density) {
                         columnHeight.value = it.height.toDp()

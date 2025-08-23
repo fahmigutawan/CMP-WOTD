@@ -22,10 +22,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import cafe.adriel.voyager.core.screen.Screen
 import com.example.wotd.AppColors
+import com.example.wotd.expect.getTtsProvider
 import com.example.wotd.global_component.AppLayout
 import com.example.wotd.global_component.ButtonWithGradient
 import com.example.wotd.global_component.WordMainCard
 import com.example.wotd.presentation.home.components.HomeTopAppBar
+import com.example.wotd.tts.TtsState
 import com.example.wotd.vector.MyIconPack
 import com.example.wotd.vector.myiconpack.IcRefresh
 import com.example.wotd.vector.myiconpack.OrnamentForBg
@@ -36,6 +38,16 @@ class HomeScreen : Screen {
     override fun Content() {
         val viewModel = koinViewModel<HomeViewModel>()
         val word = viewModel.word.collectAsStateWithLifecycle()
+        val ttsProvider = getTtsProvider().apply {
+            initialize(
+                onSuccess = {
+                    viewModel.ttsState.value = TtsState.IDLE
+                },
+                onFailed = {
+                    viewModel.ttsState.value = TtsState.NOT_AVAILABLE
+                }
+            )
+        }
 
         Scaffold(
             topBar = {
@@ -48,18 +60,18 @@ class HomeScreen : Screen {
             bottomBar = {
                 BottomAppBar(
                     containerColor = AppColors.white
-                ){
+                ) {
                     ButtonWithGradient(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
                         onClick = {
                             //TODO
                         },
                         shape = RoundedCornerShape(Int.MAX_VALUE.dp)
-                    ){
-                        Row (
+                    ) {
+                        Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ){
+                        ) {
                             Icon(
                                 imageVector = MyIconPack.IcRefresh,
                                 contentDescription = null
@@ -84,8 +96,17 @@ class HomeScreen : Screen {
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
                         .padding(bottom = 24.dp),
+                    ttsState = viewModel.ttsState.value,
                     onVoiceClick = {
-                        //TODO
+                        ttsProvider.speak(
+                            text = word.value?.data?.data?.word ?: "",
+                            onStart = {
+                                viewModel.ttsState.value = TtsState.SPEAKING
+                            },
+                            onComplete = {
+                                viewModel.ttsState.value = TtsState.IDLE
+                            }
+                        )
                     },
                     word = word.value?.data?.data?.word ?: "-",
                     definitions = word.value?.data?.data?.definitions.orEmpty(),

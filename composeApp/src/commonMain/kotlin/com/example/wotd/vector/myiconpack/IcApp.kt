@@ -1,10 +1,5 @@
 package com.example.wotd.vector.myiconpack
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush.Companion.linearGradient
 import androidx.compose.ui.graphics.Color
@@ -18,10 +13,8 @@ import androidx.compose.ui.graphics.StrokeJoin.Companion.Miter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.wotd.vector.MyIconPack
-import kotlin.Unit
 
 public val MyIconPack.IcApp: ImageVector
     get() {
@@ -79,11 +72,3 @@ public val MyIconPack.IcApp: ImageVector
     }
 
 private var _icApp: ImageVector? = null
-
-@Preview
-@Composable
-private fun Preview(): Unit {
-    Box(modifier = Modifier.padding(12.dp)) {
-        Image(imageVector = MyIconPack.IcApp, contentDescription = "")
-    }
-}

@@ -40,8 +40,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.wotd.AppColors
+import com.example.wotd.tts.TtsState
 import com.example.wotd.vector.MyIconPack
 import com.example.wotd.vector.myiconpack.IcSound
+import com.example.wotd.vector.myiconpack.IcSoundMute
 import compose.icons.LineAwesomeIcons
 import compose.icons.lineawesomeicons.AngleDownSolid
 import compose.icons.lineawesomeicons.AngleUpSolid
@@ -51,13 +53,11 @@ import compose.icons.lineawesomeicons.ArrowUpSolid
 @Composable
 fun WordMainCard(
     modifier: Modifier = Modifier,
+    ttsState: TtsState,
     onVoiceClick: () -> Unit,
     word: String,
     definitions: List<String>
 ) {
-//    val selectedDefinitionIndex = remember {
-//        mutableStateOf<Int?>(null)
-//    }
     ElevatedCard(
         modifier = modifier,
         colors = CardDefaults.elevatedCardColors(
@@ -81,23 +81,34 @@ fun WordMainCard(
                 modifier = Modifier
                     .clip(CircleShape)
                     .background(
-                        Brush.horizontalGradient(
-                            listOf(
-                                AppColors.orange300,
-                                AppColors.orange200
+                        if (ttsState == TtsState.NOT_AVAILABLE) {
+                            Brush.horizontalGradient(
+                                listOf(
+                                    Color.LightGray
+                                )
                             )
-                        )
+                        } else {
+                            Brush.horizontalGradient(
+                                listOf(
+                                    AppColors.orange300,
+                                    AppColors.orange200
+                                )
+                            )
+                        }
                     ),
-                onClick = {
-                    //TODO
-                },
+                onClick = onVoiceClick,
                 colors = IconButtonDefaults.filledIconButtonColors(
                     containerColor = Color.Transparent
                 ),
-                shape = CircleShape
+                shape = CircleShape,
+                enabled = ttsState != TtsState.NOT_AVAILABLE
             ) {
                 Icon(
-                    imageVector = MyIconPack.IcSound,
+                    imageVector = if (ttsState == TtsState.NOT_AVAILABLE) {
+                        MyIconPack.IcSoundMute
+                    } else {
+                        MyIconPack.IcSound
+                    },
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onPrimary
                 )
@@ -111,26 +122,6 @@ fun WordMainCard(
                     text = parseMarkdownBold(definitions.firstOrNull() ?: "-")
                 )
             }
-
-//            ColumnWithScrollbar(
-//                modifier = Modifier.fillMaxHeight().weight(1f),
-//                verticalArrangement = Arrangement.spacedBy(16.dp)
-//            ) {
-//                definitions.forEachIndexed { index, definition ->
-//                    DefinitionItem(
-//                        index = index,
-//                        isExpand = selectedDefinitionIndex.value == index,
-//                        definition = parseMarkdownBold(definition),
-//                        onExpandClick = { expand ->
-//                            if (expand) {
-//                                selectedDefinitionIndex.value = index
-//                            } else {
-//                                selectedDefinitionIndex.value = null
-//                            }
-//                        }
-//                    )
-//                }
-//            }
         }
     }
 }

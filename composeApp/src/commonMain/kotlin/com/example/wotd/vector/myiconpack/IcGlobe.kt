@@ -1,10 +1,5 @@
 package com.example.wotd.vector.myiconpack
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
@@ -16,10 +11,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.wotd.vector.MyIconPack
-import kotlin.Unit
 
 public val MyIconPack.IcGlobe: ImageVector
     get() {
@@ -65,11 +58,3 @@ public val MyIconPack.IcGlobe: ImageVector
     }
 
 private var _icGlobe: ImageVector? = null
-
-@Preview
-@Composable
-private fun Preview(): Unit {
-    Box(modifier = Modifier.padding(12.dp)) {
-        Image(imageVector = MyIconPack.IcGlobe, contentDescription = "")
-    }
-}

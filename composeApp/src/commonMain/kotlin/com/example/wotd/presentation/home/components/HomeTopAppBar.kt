@@ -38,6 +38,7 @@ fun HomeTopAppBar(
         ),
         title = {
             Row(
+                modifier = Modifier.padding(start = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -61,6 +62,7 @@ fun HomeTopAppBar(
         },
         actions = {
             IconButton(
+                modifier = Modifier.padding(end = 8.dp),
                 onClick = onAboutClick
             ){
                 Icon(

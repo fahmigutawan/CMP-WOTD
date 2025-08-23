@@ -8,6 +8,7 @@ import com.example.wotd.vector.myiconpack.IcInfo
 import com.example.wotd.vector.myiconpack.IcPerson
 import com.example.wotd.vector.myiconpack.IcRefresh
 import com.example.wotd.vector.myiconpack.IcSound
+import com.example.wotd.vector.myiconpack.IcSoundMute
 import com.example.wotd.vector.myiconpack.OrnamentForBg
 import kotlin.collections.List as ____KtList
 
@@ -20,6 +21,7 @@ public val MyIconPack.AllIcons: ____KtList<ImageVector>
     if (__AllIcons != null) {
       return __AllIcons!!
     }
-    __AllIcons= listOf(IcApp, IcEmail, IcGlobe, IcInfo, IcPerson, IcRefresh, IcSound, OrnamentForBg)
+    __AllIcons= listOf(IcApp, IcEmail, IcGlobe, IcInfo, IcPerson, IcRefresh, IcSound, IcSoundMute,
+        OrnamentForBg)
     return __AllIcons!!
   }
