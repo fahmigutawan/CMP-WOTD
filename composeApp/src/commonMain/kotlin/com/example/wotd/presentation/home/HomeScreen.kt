@@ -1,5 +1,6 @@
 package com.example.wotd.presentation.home
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -7,8 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -26,6 +29,7 @@ import com.example.wotd.expect.getTtsProvider
 import com.example.wotd.global_component.AppLayout
 import com.example.wotd.global_component.ButtonWithGradient
 import com.example.wotd.global_component.WordMainCard
+import com.example.wotd.model.Resource
 import com.example.wotd.presentation.home.components.HomeTopAppBar
 import com.example.wotd.tts.TtsState
 import com.example.wotd.vector.MyIconPack
@@ -64,7 +68,7 @@ class HomeScreen : Screen {
                     ButtonWithGradient(
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
                         onClick = {
-                            //TODO
+                            viewModel.refreshWord()
                         },
                         shape = RoundedCornerShape(Int.MAX_VALUE.dp)
                     ) {
@@ -91,6 +95,7 @@ class HomeScreen : Screen {
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary
                 )
+
                 WordMainCard(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -110,6 +115,7 @@ class HomeScreen : Screen {
                     },
                     word = word.value?.data?.data?.word ?: "-",
                     definitions = word.value?.data?.data?.definitions.orEmpty(),
+                    loading = word.value is Resource.Loading
                 )
             }
         }

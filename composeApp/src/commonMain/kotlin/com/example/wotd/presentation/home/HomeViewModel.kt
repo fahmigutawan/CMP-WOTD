@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val repository: Repository
-): ViewModel() {
-    private val _word = MutableStateFlow<Resource<ApiWrapper<WordResponse>>?>(null)
+) : ViewModel() {
+    private val _word = MutableStateFlow<Resource<ApiWrapper<WordResponse>>>(Resource.Loading())
     val word get() = _word.asStateFlow()
 
     val ttsState = mutableStateOf(TtsState.INITIALIZING)
@@ -26,6 +26,14 @@ class HomeViewModel(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             repository.getWord().collect {
+                _word.value = it
+            }
+        }
+    }
+
+    fun refreshWord() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.refreshWord().collect {
                 _word.value = it
             }
         }

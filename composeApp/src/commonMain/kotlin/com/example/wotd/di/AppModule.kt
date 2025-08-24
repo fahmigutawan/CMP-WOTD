@@ -1,5 +1,6 @@
 package com.example.wotd.di
 
+import com.example.wotd.data.LocalSource
 import com.example.wotd.data.RemoteSource
 import com.example.wotd.data.Repository
 import com.example.wotd.expect.AppLogger
@@ -36,6 +37,8 @@ val appModule = module {
 
     single { RemoteSource(get()) }
 
-    single { Repository(get()) }
+    single { LocalSource(get()) }
+
+    single { Repository(get(), get()) }
 }
 
