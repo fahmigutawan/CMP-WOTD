@@ -46,7 +46,7 @@ fun WordMainCard(
         )
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 48.dp, horizontal = 24.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp, horizontal = 24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -65,6 +65,7 @@ fun WordMainCard(
                         if (ttsState == TtsState.NOT_AVAILABLE) {
                             Brush.horizontalGradient(
                                 listOf(
+                                    Color.LightGray,
                                     Color.LightGray
                                 )
                             )

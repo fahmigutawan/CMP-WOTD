@@ -11,7 +11,6 @@ inline fun <reified T> getResponse(
     crossinline httpCall:suspend () -> HttpResponse
 ) = flow {
     emit(Resource.Loading())
-
     try {
         val res = httpCall()
         val body = res.body<T>()
@@ -28,8 +27,6 @@ inline fun <reified Type> getResponseWithDatastore(
     crossinline localInsert: suspend (Type) -> Unit,
 ) = flow {
     emit(Resource.Loading())
-    delay(1000)
-
     try {
         val remote = remoteGetter()
         val remoteConverted = responseToBody(remote.bodyAsText())
