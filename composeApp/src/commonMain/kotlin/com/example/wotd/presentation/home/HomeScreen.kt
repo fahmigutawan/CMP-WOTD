@@ -1,17 +1,12 @@
 package com.example.wotd.presentation.home
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,10 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import com.example.wotd.AppColors
@@ -33,7 +26,7 @@ import com.example.wotd.global_component.WordMainCard
 import com.example.wotd.model.Resource
 import com.example.wotd.presentation.about.AboutScreen
 import com.example.wotd.presentation.home.components.HomeTopAppBar
-import com.example.wotd.tts.TtsState
+import com.example.wotd.util.tts.TtsState
 import com.example.wotd.vector.MyIconPack
 import com.example.wotd.vector.myiconpack.IcRefresh
 import com.example.wotd.vector.myiconpack.OrnamentForBg

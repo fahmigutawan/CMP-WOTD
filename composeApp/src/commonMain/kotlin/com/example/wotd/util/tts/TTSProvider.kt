@@ -1,4 +1,4 @@
-package com.example.wotd.tts
+package com.example.wotd.util.tts
 
 interface TTSProvider {
     fun initialize(

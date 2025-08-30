@@ -2,7 +2,7 @@ package com.example.wotd.expect
 
 import android.speech.tts.TextToSpeech
 import com.example.wotd.ApplicationHolder
-import com.example.wotd.tts.TTSProvider
+import com.example.wotd.util.tts.TTSProvider
 import java.util.Locale
 
 actual fun getTtsProvider(): TTSProvider {

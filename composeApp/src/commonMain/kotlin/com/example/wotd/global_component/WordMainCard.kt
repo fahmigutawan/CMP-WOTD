@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.wotd.AppColors
-import com.example.wotd.tts.TtsState
+import com.example.wotd.util.tts.TtsState
 import com.example.wotd.vector.MyIconPack
 import com.example.wotd.vector.myiconpack.IcSound
 import com.example.wotd.vector.myiconpack.IcSoundMute

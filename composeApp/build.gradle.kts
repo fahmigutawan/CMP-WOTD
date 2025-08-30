@@ -58,6 +58,7 @@ kotlin {
             implementation(libs.ktor.client.logging)
             implementation(libs.composeIcons.lineAwesome)
             implementation("io.github.kevinnzou:compose-webview-multiplatform:1.8.4")
+            implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.7.1")
         }
 
         iosMain.dependencies {

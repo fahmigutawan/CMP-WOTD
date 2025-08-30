@@ -1,9 +1,5 @@
 package com.example.wotd.global_component
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -15,25 +11,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.wotd.AppColors
-import com.example.wotd.tts.TtsState
 import com.example.wotd.vector.MyIconPack
 import com.example.wotd.vector.myiconpack.IcEmail
 import com.example.wotd.vector.myiconpack.IcGlobe
 import com.example.wotd.vector.myiconpack.IcPerson
-import com.example.wotd.vector.myiconpack.IcSound
-import com.example.wotd.vector.myiconpack.IcSoundMute
-import compose.icons.LineAwesomeIcons
-import compose.icons.lineawesomeicons.AngleDownSolid
-import compose.icons.lineawesomeicons.AngleUpSolid
 
 @Composable
 fun AboutCard(

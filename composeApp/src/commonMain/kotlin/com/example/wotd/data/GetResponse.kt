@@ -3,7 +3,6 @@ package com.example.wotd.data
 import com.example.wotd.model.Resource
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import io.ktor.client.statement.bodyAsText
 
@@ -23,19 +22,25 @@ inline fun <reified T> getResponse(
 inline fun <reified Type> getResponseWithDatastore(
     crossinline remoteGetter: suspend () -> HttpResponse,
     crossinline responseToBody: suspend (json: String) -> Type,
+    crossinline needToGetRemote:(Type) -> Boolean,
     crossinline localGetter: suspend () -> Type,
     crossinline localInsert: suspend (Type) -> Unit,
 ) = flow {
     emit(Resource.Loading())
+    val local = localGetter()
+
     try {
-        val remote = remoteGetter()
-        val remoteConverted = responseToBody(remote.bodyAsText())
-        localInsert(remoteConverted)
-        emit(Resource.Success(remoteConverted))
+        if(needToGetRemote(local)){
+            val remote = remoteGetter()
+            val remoteConverted = responseToBody(remote.bodyAsText())
+            localInsert(remoteConverted)
+            emit(Resource.Success(remoteConverted))
+        } else {
+            emit(Resource.Success(local))
+        }
     } catch (e: Exception) {
         e.printStackTrace()
         try {
-            val local = localGetter()
             emit(Resource.Success(local))
         }catch (e2: Exception){
             e2.printStackTrace()

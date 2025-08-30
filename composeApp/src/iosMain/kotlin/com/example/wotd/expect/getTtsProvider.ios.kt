@@ -1,6 +1,6 @@
 package com.example.wotd.expect
 
-import com.example.wotd.tts.TTSProvider
+import com.example.wotd.util.tts.TTSProvider
 
 private var ttsProvider: () -> TTSProvider? = { null }
 

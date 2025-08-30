@@ -4,11 +4,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.wotd.data.Repository
-import com.example.wotd.expect.AppLogger
 import com.example.wotd.model.ApiWrapper
 import com.example.wotd.model.Resource
 import com.example.wotd.model.WordResponse
-import com.example.wotd.tts.TtsState
+import com.example.wotd.util.tts.TtsState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
