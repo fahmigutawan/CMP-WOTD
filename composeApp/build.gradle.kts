@@ -57,6 +57,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.ktor.client.logging)
             implementation(libs.composeIcons.lineAwesome)
+            implementation("io.github.kevinnzou:compose-webview-multiplatform:1.8.4")
         }
 
         iosMain.dependencies {

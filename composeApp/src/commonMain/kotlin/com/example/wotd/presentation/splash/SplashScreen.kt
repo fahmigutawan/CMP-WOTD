@@ -37,7 +37,7 @@ class SplashScreen : Screen {
         if(viewModel.isTncPassed.value == false){
             TncDialog(
                 onFinishClick = {
-                    viewModel.isTncPassed.value = true
+                    viewModel.saveTncPassingState()
                 }
             )
         }

@@ -2,6 +2,7 @@ package com.example.wotd.data
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.example.wotd.model.ApiMetadata
@@ -30,5 +31,15 @@ class LocalSource(
                 WordResponse("", emptyList())
             )
         }
+    }
+
+    suspend fun saveTncPassingState(){
+        datastore.edit {
+            it[booleanPreferencesKey("tnc_passing")] = true
+        }
+    }
+
+    fun getTncPassingState() = datastore.data.map {
+        it[booleanPreferencesKey("tnc_passing")] ?: false
     }
 }

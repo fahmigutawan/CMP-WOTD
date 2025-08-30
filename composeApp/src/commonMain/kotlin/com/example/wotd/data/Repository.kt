@@ -38,4 +38,8 @@ class Repository (
             local.saveWord(it)
         }
     )
+
+    suspend fun saveTncPassingState() = local.saveTncPassingState()
+
+    fun getTncPassingState() = local.getTncPassingState()
 }
